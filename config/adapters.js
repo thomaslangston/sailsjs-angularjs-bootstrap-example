@@ -11,6 +11,7 @@
  * For more information on adapter configuration, check out:
  * http://sailsjs.org/#documentation
  */
+var secrets = require('../secrets');
 
 module.exports.adapters = {
 
@@ -21,7 +22,7 @@ module.exports.adapters = {
   // Persistent adapter for DEVELOPMENT ONLY
   // (data is preserved when the server shuts down)
   disk: {
-    module: 'sails-disk'
+    module: 'postgresql'
   },
 
   // MySQL is the world's most popular relational database.
@@ -35,5 +36,12 @@ module.exports.adapters = {
     // so you don't inadvertently push it up if you're using version control
     password: 'YOUR_MYSQL_PASSWORD', 
     database: 'YOUR_MYSQL_DB'
+  },
+
+  postgresql: {
+    module: 'sails-postgresql',
+    url: secrets.postgresqlUrl(),
+    pool: false,
+    ssl: false
   }
 };
